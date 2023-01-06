@@ -25,22 +25,18 @@ function setCanvasScale() {
 
 function startGame() {
 
-    console.log({canvasScale, elementsScale});
     game.font = elementsScale + 'px Verdana';
     game.textAlign = 'end';
-    // game.fillText(emojis['PLAYER'], elementsScale * 2, elementsScale * 2.5);
     
-    for (let i = 1; i <= 10; i++) {
-        game.fillText(emojis['X'], elementsScale, elementsScale * i);
+    const map = maps[1];
+    const mapRows = map.trim().split('\n');
+    const mapColsSinceRows = mapRows.map(row => row.trim().split(''));
+    console.log({map, mapRows, mapColsSinceRows});
+
+    for (let row = 1; row <= 10; row++) {
+        for (let col = 1; col <= 10; col++) {
+            game.fillText(emojis[mapColsSinceRows[row - 1][col -1]], elementsScale * col, elementsScale * row);
+        }
     }
 
-    // window.innerWidth
-    // window.innerHeight
-    // game.
-    // game.fillRect(0,0,100,100);
-    // game.clearRect(0,0,50,50);
-    // game.font = "25px Verdana";
-    // game.fillStyle = 'purple';
-    // game.textAlign = '';
-    // game.fillText('Platzi');
 }
