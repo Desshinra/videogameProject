@@ -28,15 +28,24 @@ function startGame() {
     game.font = elementsScale + 'px Verdana';
     game.textAlign = 'end';
     
-    const map = maps[1];
+    const map = maps[0];
     const mapRows = map.trim().split('\n');
     const mapColsSinceRows = mapRows.map(row => row.trim().split(''));
     console.log({map, mapRows, mapColsSinceRows});
 
-    for (let row = 1; row <= 10; row++) {
-        for (let col = 1; col <= 10; col++) {
-            game.fillText(emojis[mapColsSinceRows[row - 1][col -1]], elementsScale * col, elementsScale * row);
-        }
-    }
-
+    mapColsSinceRows.forEach((row, rowI) => {
+        row.forEach((col, colI) => {
+            const emoji = emojis[col];
+            const posX = elementsScale * (colI + 1)
+            const posY = elementsScale * (rowI + 1)
+            game.fillText(emoji, posX, posY)
+        })
+    }); 
 }
+
+//     for (let row = 1; row <= 10; row++) {
+//         for (let col = 1; col <= 10; col++) {
+//             game.fillText(emojis[mapColsSinceRows[row - 1][col -1]], elementsScale * col, elementsScale * row);
+//         }
+//     }
+// 
