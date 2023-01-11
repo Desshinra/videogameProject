@@ -8,6 +8,7 @@ const btnDown = document.querySelector('#down');
 let canvasScale;
 let elementsScale;
 let level = 0;
+let lives = 3;
 
 const playerPosition = {
 x: undefined,
@@ -100,18 +101,29 @@ function movePlayer() {
     });
 
     if (enemyCollision) {
-        console.log('Chocaste contra un enemigo');
+        levelFail();
     }
 
     game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
 }
 
+
+function levelFail() {
+    console.log('beep');
+    lives--;
+    if (lives <= 0) {
+        level = 0;
+        lives = 3;
+    }
+    playerPosition.x = undefined;
+    playerPosition.y = undefined;
+    startGame();
+}
 function levelComplete() {
     console.log('You have complete te level');
     level++
     startGame();
 }
-
 function gameComplete() {
     console.log('terminaste el juego');
 }
