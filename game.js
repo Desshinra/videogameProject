@@ -81,21 +81,40 @@ btnDown.addEventListener('click', moveDown);
 
 function moveUp() {
     console.log('I want to go up');
-    playerPosition.y -= elementsScale; 
-    startGame();
+    if ((playerPosition.y - elementsScale) < elementsScale) {
+        console.log('Out');
+    } else {
+        playerPosition.y -= elementsScale; 
+        startGame();
+    }
 }
 function moveLeft() {
     console.log('I want to go to the left');
-    playerPosition.x -= elementsScale; 
-    startGame();
+    
+    if ((playerPosition.x - elementsScale) < elementsScale) {
+        console.log('Out');
+    } else {
+        playerPosition.x -= elementsScale; 
+         startGame();
+    }
 }
 function moveRight() {
     console.log('I want to go to the right');
-    playerPosition.x += elementsScale; 
-    startGame();
+    
+    if ((playerPosition.x + elementsScale) > canvasScale) {
+        console.log('Out');
+    } else {
+        playerPosition.x += elementsScale; 
+            startGame();
+    }
 }
 function moveDown() {
     console.log('I want to go down');
-    playerPosition.y += elementsScale; 
-    startGame();
+    
+    if ((playerPosition.y + elementsScale) > canvasScale) {
+        console.log('Out');
+    }  else {
+       playerPosition.y += elementsScale; 
+    startGame(); 
+    }
 }
