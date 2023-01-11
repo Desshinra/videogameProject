@@ -16,6 +16,11 @@ const playerPosition = {
     y: undefined
 }
 
+const giftPosition = {
+    x: undefined,
+    y: undefined
+}
+
 function setCanvasScale() {
 
     if(window.innerHeight > window.innerWidth) {
@@ -54,6 +59,9 @@ function startGame() {
                     playerPosition.x = posX;
                     playerPosition.y = posY;
                     console.log({playerPosition});
+                } else if (col == 'I') {
+                    giftPosition.x = posX;
+                    giftPosition.y = posY;
                 }
             }
             game.fillText(emoji, posX, posY);
@@ -64,6 +72,14 @@ function startGame() {
 }
 
 function movePlayer() {
+    const giftCollisionX = playerPosition.x.toFixed(3) == giftPosition.x.toFixed(3);
+    const giftCollisionY = playerPosition.y.toFixed(3) == giftPosition.y.toFixed(3);
+    const giftCollision = giftCollisionX && giftCollisionY;
+
+    if(giftCollision) {
+        console.log('Level up');
+    }
+
     game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
 }
 
