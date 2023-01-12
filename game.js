@@ -4,15 +4,17 @@ const btnUp = document.querySelector('#up');
 const btnLeft = document.querySelector('#left');
 const btnRight = document.querySelector('#right');
 const btnDown = document.querySelector('#down');
-const spanLives = document.querySelector('#lives')
-const spanTime = document.querySelector('#time')
+const spanLives = document.querySelector('#lives');
+const spanTime = document.querySelector('#time');
+const spanRecord = document.querySelector('#record');
+const pResult = document.querySelector('#result')
+
 
 let canvasScale;
 let elementsScale;
 let level = 0;
 let lives = 3;
 let timeStart;
-let playerTime;
 let timeInterval;
 
 const playerPosition = {
@@ -60,6 +62,7 @@ function startGame() {
     if (!timeStart) {
         timeStart = Date.now();
         timeInterval = setInterval(showTime, 100);
+        showRecord();
     }
 
     const mapRows = map.trim().split('\n');
@@ -142,6 +145,22 @@ function levelComplete() {
 function gameComplete() {
     console.log('terminaste el juego');
     clearInterval(timeInterval);
+
+    const recordTime = localStorage.getItem('record_time');
+    const playerTime = Date.now() - timeStart;
+
+    if (recordTime) {
+        if (recordTime >= playerTime) {
+            localStorage.setItem('record_time', playerTime);
+            pResult.innerHTML = 'superaste el record';
+       } else {
+            pResult.innerHTML = 'No superaste el record';
+        }
+    } else {
+        localStorage.setItem('record_time', playerTime);
+    }
+
+    console.log({recordTime, playerTime});
 }
 function showLives() {
     spanLives.innerHTML = emojis["HEART"].repeat(lives)
@@ -149,6 +168,10 @@ function showLives() {
 function showTime() {
     spanTime.innerHTML = Date.now() - timeStart;
 }
+function showRecord() {
+    spanRecord.innerHTML = localStorage.getItem('record_time')
+}
+
 
 window.addEventListener('keydown', moveByKeys);
 btnUp.addEventListener('click', moveUp);
@@ -163,7 +186,7 @@ function moveByKeys(event) {
     else if (event.key == 'ArrowDown') moveDown();
 }
 function moveUp() {
-    console.log('I want to go up');
+    // console.log('I want to go up');
 
     if ((playerPosition.y - elementsScale) < elementsScale) {
         console.log('OUT');
@@ -173,7 +196,7 @@ function moveUp() {
     }
 }
 function moveLeft() {
-    console.log('I want to go to the left');
+    // console.log('I want to go to the left');
 
     if ((playerPosition.x - elementsScale) < elementsScale) {
         console.log('OUT');
@@ -183,7 +206,7 @@ function moveLeft() {
     }
 }
 function moveRight() {
-    console.log('I want to go to the right');
+    // console.log('I want to go to the right');
 
     if ((playerPosition.x + elementsScale) > canvasScale) {
         console.log('OUT');
@@ -193,7 +216,7 @@ function moveRight() {
 }
 }
 function moveDown() {
-    console.log('I want to go down');
+    // console.log('I want to go down');
 
     if ((playerPosition.y + elementsScale) > canvasScale) {
         console.log('OUT');
