@@ -42,10 +42,15 @@ function setCanvasScale() {
     canvasScale = window.innerHeight * 0.8;
     }
 
+canvasScale = Number(canvasScale.toFixed(0));
+
 canvas.setAttribute('width', canvasScale);
 canvas.setAttribute('height', canvasScale);
 
 elementsScale = canvasScale / 10;
+
+playerPosition.x = undefined;
+playerPosition.y = undefined;
 
 startGame();
 }
