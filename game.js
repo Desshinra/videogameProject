@@ -154,7 +154,7 @@ function gameComplete() {
     
 
     const recordTime = localStorage.getItem('record_time');
-    const playerTime = Date.now() - timeStart;
+    const playerTime = Number(((Date.now() - timeStart) / 1000).toFixed(1));
 
     if (recordTime) {
         if (recordTime >= playerTime) {
@@ -173,7 +173,7 @@ function showLives() {
     spanLives.innerHTML = emojis["HEART"].repeat(lives)
 }
 function showTime() {
-    spanTime.innerHTML = Date.now() - timeStart;
+    spanTime.innerHTML = Number(((Date.now() - timeStart) / 1000).toFixed(1));
 }
 function showRecord() {
     spanRecord.innerHTML = localStorage.getItem('record_time')
