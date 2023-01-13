@@ -1,5 +1,6 @@
 const canvas = document.querySelector('#game');
 const game = canvas.getContext('2d');
+const btns = document.querySelector('.btns')
 const btnUp = document.querySelector('#up');
 const btnLeft = document.querySelector('#left');
 const btnRight = document.querySelector('#right');
@@ -16,6 +17,7 @@ let level = 0;
 let lives = 3;
 let timeStart;
 let timeInterval;
+let enemiesPosition = []
 
 const playerPosition = {
 x: undefined,
@@ -25,10 +27,11 @@ const giftPosition = {
 x: undefined,
 y: undefined,
 };
-let enemiesPosition = []
+
 
 window.addEventListener('load', setCanvasScale);
 window.addEventListener('resize', setCanvasScale);
+
 
 function setCanvasScale() {
 
@@ -45,7 +48,6 @@ elementsScale = canvasScale / 10;
 
 startGame();
 }
-
 function startGame() {
 //   console.log({ canvasScale, elementsScale });
 
@@ -102,7 +104,6 @@ function startGame() {
 
     movePlayer();
 }
-
 function movePlayer() {
     const giftCollisionX = playerPosition.x.toFixed(3) == giftPosition.x.toFixed(3);
     const giftCollisionY = playerPosition.y.toFixed(3) == giftPosition.y.toFixed(3);
@@ -122,8 +123,6 @@ function movePlayer() {
 
     game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
 }
-
-
 function levelFail() {
     console.log('beep');
     lives--;
@@ -145,6 +144,8 @@ function levelComplete() {
 function gameComplete() {
     console.log('terminaste el juego');
     clearInterval(timeInterval);
+    hideMapAndBtns();
+    
 
     const recordTime = localStorage.getItem('record_time');
     const playerTime = Date.now() - timeStart;
@@ -153,7 +154,7 @@ function gameComplete() {
         if (recordTime >= playerTime) {
             localStorage.setItem('record_time', playerTime);
             pResult.innerHTML = 'superaste el record';
-       } else {
+    } else {
             pResult.innerHTML = 'No superaste el record';
         }
     } else {
@@ -170,6 +171,11 @@ function showTime() {
 }
 function showRecord() {
     spanRecord.innerHTML = localStorage.getItem('record_time')
+}
+
+function hideMapAndBtns() {
+    canvas.classList.add('toggle')
+    btns.classList.add('toggle')
 }
 
 
@@ -225,3 +231,4 @@ function moveDown() {
         startGame();
     }
 }
+

@@ -68,3 +68,7 @@ p {
         margin-right: 100%;
     }
 }
+
+.toggle {
+    display: none;
+}
