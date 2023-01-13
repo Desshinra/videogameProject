@@ -47,7 +47,7 @@ canvasScale = Number(canvasScale.toFixed(0));
 canvas.setAttribute('width', canvasScale);
 canvas.setAttribute('height', canvasScale);
 
-elementsScale = canvasScale / 10;
+elementsScale = Number((canvasScale / 10).toFixed(0));
 
 playerPosition.x = undefined;
 playerPosition.y = undefined;
@@ -85,8 +85,8 @@ function startGame() {
     mapRowCols.forEach((row, rowI) => {
     row.forEach((col, colI) => {
     const emoji = emojis[col];
-    const posX = elementsScale * (colI + 1);
-    const posY = elementsScale * (rowI + 1);
+    const posX = Number(elementsScale * (colI + 1).toFixed(0));
+    const posY = Number(elementsScale * (rowI + 1).toFixed(0));
 
     if (col == 'O') {
     if (!playerPosition.x && !playerPosition.y) {
@@ -111,15 +111,15 @@ function startGame() {
     movePlayer();
 }
 function movePlayer() {
-    const giftCollisionX = playerPosition.x.toFixed(3) == giftPosition.x.toFixed(3);
-    const giftCollisionY = playerPosition.y.toFixed(3) == giftPosition.y.toFixed(3);
+    const giftCollisionX = playerPosition.x.toFixed(1) == giftPosition.x.toFixed(1);
+    const giftCollisionY = playerPosition.y.toFixed(1) == giftPosition.y.toFixed(1);
     const giftCollision = giftCollisionX && giftCollisionY;
 
     if (giftCollision) levelComplete();   
 
     const enemyCollision = enemiesPosition.find(enemy => {
-        const enemyCollisionX = enemy.x.toFixed(3) == playerPosition.x.toFixed(3) 
-        const enemyCollisionY = enemy.y.toFixed(3) == playerPosition.y.toFixed(3) 
+        const enemyCollisionX = Number(enemy.x.toFixed(1)) == Number(playerPosition.x.toFixed(1)) 
+        const enemyCollisionY = Number(enemy.y.toFixed(1)) == Number(playerPosition.y.toFixed(1))
         return enemyCollisionX && enemyCollisionY;
     });
 
@@ -165,6 +165,7 @@ function gameComplete() {
         }
     } else {
         localStorage.setItem('record_time', playerTime);
+        spanRecord.innerHTML = playerTime
     }
 
     console.log({recordTime, playerTime});
