@@ -1,0 +1,72 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+body {
+    background-color: var(--die-white);
+    background-image: url(https://res.cloudinary.com/dqdz52ic7/image/upload/v1673641470/jueguito1/skel_qibwzy.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--die-white);
+}
+
+h1 {
+    font-size: 2.4rem;
+}
+p {
+    font-size: 1.6rem;
+}
+
+/*avoid errors with the display*/
+
+.btns {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/*Recycle*/
+
+:root {
+    --die-white: #c5cad8;
+    --die-pink: #dd1755;
+    --die-blue: #2d4c82;
+}
+
+.toggle {
+    display: none;
+}
+.final {
+    font-size: 20px;
+    font-size-adjust: 2;
+}
+
+/*Media queries*/
+
+@media (max-width: 440px) {
+    button {
+        margin-top: 25px;
+    }
+    
+    #up,
+    #down {
+        margin-left: 100%;
+        margin-right: 100%;
+    }
+    #down {
+        margin-bottom: 25px;
+    }
+}
+
+@media (max-width: 992px) {
+    .great-container {
+        flex-direction: column;
+    }
+}
