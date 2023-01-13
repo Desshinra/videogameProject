@@ -9,6 +9,7 @@ const spanLives = document.querySelector('#lives');
 const spanTime = document.querySelector('#time');
 const spanRecord = document.querySelector('#record');
 const pResult = document.querySelector('#result')
+const finalText = document.querySelector('.messages')
 
 
 let canvasScale;
@@ -172,10 +173,10 @@ function showTime() {
 function showRecord() {
     spanRecord.innerHTML = localStorage.getItem('record_time')
 }
-
 function hideMapAndBtns() {
     canvas.classList.add('toggle')
     btns.classList.add('toggle')
+    finalText.classList.add('final')
 }
 
 
