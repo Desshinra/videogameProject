@@ -69,4 +69,8 @@ p {
     .great-container {
         flex-direction: column;
     }
+    .messages {
+        margin-left: 0;
+        margin-right: 0;
+    }
 }

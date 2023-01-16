@@ -46,6 +46,13 @@ button:not(:last-child) {
 
 /*Messages container*/
 
+.info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
 .messages {
     justify-self: end;
     align-self: center;
@@ -54,7 +61,6 @@ button:not(:last-child) {
     margin: 0 auto;
     width: 80%;
     max-width: 460px;
-    text-align: center;
     margin-right: 2rem;
     margin-left: 1rem;
 }
@@ -64,4 +70,20 @@ p {
     width: 100%;
     text-shadow: 2px 2px 5px var(--die-blue), -2px -2px 5px var(--die-blue);
     font-weight: bold;
+}
+
+.restart {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+}
+
+.restart a {
+    text-decoration: none;
+    color: var(--die-pink);
+}
+
+.restart button {
+    border-color: var(--die-pink);
 }
